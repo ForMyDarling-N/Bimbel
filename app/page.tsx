@@ -1557,21 +1557,21 @@ export default function Home() {
     <div className="space-y-8">
       <div className="flex flex-wrap justify-between items-center gap-4">
         <h2 className="text-3xl font-bold text-navy flex items-center">
-          <span className="w-1 h-10 bg-yellow mr-3"></span>
-          Learning Management System
-        </h2>
-        {(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
-          <button
-            onClick={() => {
-              setEditingModule(null)
-              setNewModule({ title: '', description: '', videoUrl: '', audioUrl: '', textContent: '', links: [] })
-              document.getElementById('addModuleForm')?.classList.toggle('hidden')
-            }}
-            className="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy/90 transition-colors"
-          >
-            + Tambah Modul
-          </button>
-        )}
+  <span className="w-1 h-10 bg-yellow mr-3"></span>
+  Learning Management System
+</h2>
+{(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
+  <button
+    onClick={() => {
+      setEditingModule(null)
+      setNewModule({ title: '', description: '', videoUrl: '', audioUrl: '', textContent: '', links: [] })
+      document.getElementById('addModuleForm')?.classList.toggle('hidden')
+    }}
+    className="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy/90 transition-colors"
+  >
+    + Tambah Modul
+  </button>
+)}
       </div>
 
       {/* Add/Edit Module Form */}
