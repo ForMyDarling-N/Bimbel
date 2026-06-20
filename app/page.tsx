@@ -1,5 +1,8 @@
 'use client'
 
+if (typeof globalThis.crypto === 'undefined') {
+  globalThis.crypto = require('crypto').webcrypto
+}
 import { useState, useEffect, useRef } from 'react'
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import {
