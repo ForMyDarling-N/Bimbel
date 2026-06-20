@@ -462,7 +462,7 @@ export default function Home() {
     })
 
     // Load exam results for student
-    if (user.role === 'student') {
+    if (user?.role === 'student') {
       const unsubscribeResults = onSnapshot(
         query(collection(db, 'examResults'), where('studentId', '==', user.uid)),
         (snapshot) => {
@@ -868,7 +868,7 @@ export default function Home() {
           webhookUrl: window.location.origin + '/api/payment-webhook',
           metadata: {
             studentId: user.uid,
-            branch: user.role === 'admin' ? 'admin' : 'online'
+            branch: user?.role === 'admin' ? 'admin' : 'online'
           }
         }),
       })
@@ -1560,7 +1560,7 @@ export default function Home() {
           <span className="w-1 h-10 bg-yellow mr-3"></span>
           Learning Management System
         </h2>
-        {(user.role === 'super-admin' || user.role === 'admin' || user.role === 'tutor') && (
+        {(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
           <button
             onClick={() => {
               setEditingModule(null)
@@ -1575,7 +1575,7 @@ export default function Home() {
       </div>
 
       {/* Add/Edit Module Form */}
-      {(user.role === 'super-admin' || user.role === 'admin' || user.role === 'tutor') && (
+      {(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
         <div id="addModuleForm" className="bg-white p-6 rounded-xl shadow-md hidden">
           <h3 className="text-xl font-semibold text-navy mb-4">
             {editingModule ? 'Edit Modul' : 'Tambah Modul Baru'}
@@ -1711,7 +1711,7 @@ export default function Home() {
                   <p className="text-gray-600 mt-1">{module.description}</p>
                   <p className="text-xs text-gray-400 mt-1">Oleh: {module.authorName}</p>
                 </div>
-                {(user.role === 'super-admin' || user.role === 'admin' || user.uid === module.authorId) && (
+                {(user?.role === 'super-admin' || user?.role === 'admin' || user?.uid === module.authorId) && (
                   <div className="flex gap-2">
                     <button
                       onClick={() => {
@@ -1849,7 +1849,7 @@ export default function Home() {
             <span className="w-1 h-10 bg-yellow mr-3"></span>
             Ujian Online
           </h2>
-          {(user.role === 'super-admin' || user.role === 'admin' || user.role === 'tutor') && (
+          {(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
             <button
               onClick={() => {
                 setEditingExam(null)
@@ -1864,7 +1864,7 @@ export default function Home() {
         </div>
 
         {/* Add Exam Form */}
-        {(user.role === 'super-admin' || user.role === 'admin' || user.role === 'tutor') && (
+        {(user?.role === 'super-admin' || user?.role === 'admin' || user?.role === 'tutor') && (
           <div id="addExamForm" className="bg-white p-6 rounded-xl shadow-md hidden">
             <h3 className="text-xl font-semibold text-navy mb-4">
               {editingExam ? 'Edit Ujian' : 'Buat Ujian Baru'}
@@ -2902,7 +2902,7 @@ export default function Home() {
                     </td>
                     <td className="px-6 py-4">
                       {p.status === 'pending' && p.method === 'transfer' && 
-                       (user.role === 'super-admin' || user.role === 'admin') && (
+                       (user?.role === 'super-admin' || user?.role === 'admin') && (
                         <button
                           onClick={() => verifyPayment(p.id)}
                           className="bg-green-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-green-600 transition-colors"
@@ -2939,7 +2939,7 @@ export default function Home() {
           <span className="w-1 h-10 bg-yellow mr-3"></span>
           Event & Lomba
         </h2>
-        {(user.role === 'super-admin' || user.role === 'admin') && (
+        {(user?.role === 'super-admin' || user?.role === 'admin') && (
           <button
             onClick={() => {
               setEditingEvent(null)
@@ -2954,7 +2954,7 @@ export default function Home() {
       </div>
 
       {/* Add Event Form */}
-      {(user.role === 'super-admin' || user.role === 'admin') && (
+      {(user?.role === 'super-admin' || user?.role === 'admin') && (
         <div id="addEventForm" className="bg-white p-6 rounded-xl shadow-md hidden">
           <h3 className="text-xl font-semibold text-navy mb-4">
             {editingEvent ? 'Edit Event' : 'Buat Event Baru'}
@@ -3142,7 +3142,7 @@ export default function Home() {
                   Daftar Sekarang
                 </button>
               )}
-              {(user.role === 'super-admin' || user.role === 'admin') && event.status === 'draft' && (
+              {(user?.role === 'super-admin' || user?.role === 'admin') && event.status === 'draft' && (
                 <button
                   onClick={() => publishEvent(event.id)}
                   className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors w-full"
@@ -3273,7 +3273,7 @@ export default function Home() {
             <span className="w-1 h-10 bg-yellow mr-3"></span>
             Galeri
           </h2>
-          {(user.role === 'super-admin' || user.role === 'admin') && (
+          {(user?.role === 'super-admin' || user?.role === 'admin') && (
             <button
               onClick={() => document.getElementById('addGalleryForm')?.classList.toggle('hidden')}
               className="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy/90 transition-colors"
@@ -3284,7 +3284,7 @@ export default function Home() {
         </div>
 
         {/* Add Gallery Form */}
-        {(user.role === 'super-admin' || user.role === 'admin') && (
+        {(user?.role === 'super-admin' || user?.role === 'admin') && (
           <form id="addGalleryForm" onSubmit={handleGallerySubmit} className="bg-white p-6 rounded-xl shadow-md hidden">
             <div className="grid md:grid-cols-2 gap-4">
               <input
